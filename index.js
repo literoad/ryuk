@@ -2,15 +2,26 @@ const lighthouse = require('lighthouse')
 const puppeteer = require('puppeteer')
 
 module.exports.handler = async (event, context) => {
+  console.log('Received a new request', event)
+
+  if (!event.url) {
+    throw new Error('"url" field is required')
+  }
+
+  console.log('Starting browser...')
   const browser = await puppeteer.launch({
     defaultViewport: null,
   })
+  console.log('Started browser!')
+
   const options = {
-    logLevel: 'info',
     output: 'json',
     port: new URL(browser.wsEndpoint()).port,
   }
-  const result = await lighthouse('https://journal.tinkoff.ru', options)
+
+  console.log('Starting Lighthouse...')
+  const result = await lighthouse(event.url, options)
+  console.log('Lighthouse finished auditing the page!')
 
   const report = result.report
   console.log(report)
