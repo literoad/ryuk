@@ -1,0 +1,9 @@
+{
+  "name": "ryuk",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "lighthouse": "^9.5.0",
+    "puppeteer": "^13.5.1"
+  }
+}
