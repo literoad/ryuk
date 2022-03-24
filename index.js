@@ -23,14 +23,9 @@ module.exports.handler = async (event, context) => {
   const result = await lighthouse(event.url, options)
   console.log('Lighthouse finished auditing the page!')
 
-  const report = result.report
-  console.log(report)
-
   console.log('Report is done for', result.lhr.finalUrl)
-  console.log(
-    'Performance score was',
-    result.lhr.categories.performance.score * 100
-  )
 
   await browser.close()
+
+  return result.report
 }
