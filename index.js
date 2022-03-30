@@ -1,10 +1,12 @@
 const lighthouse = require('lighthouse')
 const puppeteer = require('puppeteer')
 
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event) => {
   console.log('Received a new request', event)
 
-  if (!event.url) {
+  const body = JSON.parse(event.body);
+
+  if (!body.url) {
     throw new Error('"url" field is required')
   }
 
@@ -20,7 +22,7 @@ module.exports.handler = async (event, context) => {
   }
 
   console.log('Starting Lighthouse...')
-  const result = await lighthouse(event.url, options)
+  const result = await lighthouse(body.url, options)
   console.log('Lighthouse finished auditing the page!')
 
   console.log('Report is done for', result.lhr.finalUrl)
