@@ -17,7 +17,6 @@ module.exports.handler = async (event) => {
   console.log('Started browser!')
 
   const options = {
-    output: 'json',
     port: new URL(browser.wsEndpoint()).port,
   }
 
@@ -29,5 +28,5 @@ module.exports.handler = async (event) => {
 
   await browser.close()
 
-  return result.report
+  return result.lhr
 }
