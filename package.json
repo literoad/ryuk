@@ -4,7 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "lighthouse": "^9.5.0",
-    "puppeteer": "^13.5.1"
+    "puppeteer": "^13.5.2"
   },
   "devDependencies": {
     "prettier": "^2.6.1"
