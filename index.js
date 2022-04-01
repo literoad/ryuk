@@ -30,7 +30,7 @@ module.exports.handler = async (event) => {
   await browser.close();
 
   return {
-    statusCode: 200,
+    statusCode: result?.lhr?.finalUrl ? 200 : 500,
     body: result.report,
   };
 };
